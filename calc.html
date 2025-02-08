@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Números Pares</title>
+</head>
+<body>
+    <h1>Calculadora de Números Pares (2-6)</h1>
+    <label for="num1">Número 1 (escolha um número entre 2 e 6):</label>
+    <input type="number" id="num1" min="2" max="6" step="2">
+    <br><br>
+    
+    <label for="num2">Número 2 (escolha um número entre 2 e 6):</label>
+    <input type="number" id="num2" min="2" max="6" step="2">
+    <br><br>
+    
+    <label for="operacao">Operação:</label>
+    <select id="operacao">
+        <option value="add">Adição</option>
+        <option value="sub">Subtração</option>
+        <option value="mul">Multiplicação</option>
+        <option value="div">Divisão</option>
+    </select>
+    <br><br>
+    
+    <button onclick="calcular()">Calcular</button>
+    
+    <h2>Resultado: <span id="resultado"></span></h2>
+    
+    <script>
+        function calcular() {
+            const num1 = parseInt(document.getElementById('num1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+            const operacao = document.getElementById('operacao').value;
+            let resultado;
+            
+            if (![2, 4, 6].includes(num1) || ![2, 4, 6].includes(num2)) {
+                alert("Por favor, escolha números pares entre 2 e 6.");
+                return;
+            }
+            
+            switch (operacao) {
+                case 'add':
+                    resultado = num1 + num2;
+                    break;
+                case 'sub':
+                    resultado = num1 - num2;
+                    break;
+                case 'mul':
+                    resultado = num1 * num2;
+                    break;
+                case 'div':
+                    if (num2 === 0) {
+                        alert("Divisão por zero não é permitida!");
+                        return;
+                    }
+                    resultado = num1 / num2;
+                    break;
+                default:
+                    alert("Operação inválida!");
+                    return;
+            }
+            
+            document.getElementById('resultado').innerText = resultado;
+        }
+    </script>
+</body>
+</html>
